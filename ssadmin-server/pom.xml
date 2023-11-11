@@ -9,10 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zjz</groupId>
-    <artifactId>rbacMybatisPlus</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>rbacMybatisPlus</name>
-    <description>rbacMybatisPlus</description>
+    <artifactId>ssadmin-server</artifactId>
     <properties>
         <java.version>1.8</java.version>
     </properties>
