@@ -1,10 +1,10 @@
 FROM eclipse-temurin:8-jre
 
-RUN mkdir -p /rbacMybatisPlus
-WORKDIR /rbacMybatisPlus
+RUN mkdir -p /ssadmin-server
+WORKDIR /ssadmin-server
 
 ## 将Jar 文件复制到镜像中
-COPY ./rbacMybatisPlus/target/rbacMybatisPlus.jar app.jar
+COPY ./ssadmin-system/target/ssadmin-system.jar app.jar
 
 ## 设置 TZ 时区
 ENV TZ=Asia/Shanghai
