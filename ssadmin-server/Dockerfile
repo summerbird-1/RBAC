@@ -4,7 +4,7 @@ RUN mkdir -p /ssadmin-server
 WORKDIR /ssadmin-server
 
 ## 将Jar 文件复制到镜像中
-COPY ./ssadmin-server/target/ssadmin-server.jar app.jar
+COPY ./ssadmin-server/target/ssadmin-server-2.7.17.jar app.jar
 
 ## 设置 TZ 时区
 ENV TZ=Asia/Shanghai
