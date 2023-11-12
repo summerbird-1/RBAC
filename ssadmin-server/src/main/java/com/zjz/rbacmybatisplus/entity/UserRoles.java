@@ -13,16 +13,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author makejava
  * @since 2023-11-04 12:58:26
  */
-@SuppressWarnings("serial")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("user_roles")
 public class UserRoles  {
 
-    
+    @TableId
     private Long userid;
-    
+
+    @TableId
     private Long roleid;
 
 
