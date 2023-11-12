@@ -9,11 +9,11 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-root}
+      # MYSQL_DATABASE: ${MYSQL_DATABASE:-root}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-123456}
     volumes:
       - mysql:/var/lib/mysql/
-      - ./sql/ssadmin_init.sql:/docker-entrypoint-initdb.d/ssadmin_init.sql:ro
+      - ./ssadmin_init.sql:/docker-entrypoint-initdb.d/ssadmin_init.sql:ro
   
   redis:
     container_name: ssadmin-redis
