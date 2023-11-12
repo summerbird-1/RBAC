@@ -2,6 +2,8 @@ package com.zjz.rbacmybatisplus.entity;
 
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class UserRoles  {
 
     //@TableId
+    @TableId
     private Long userid;
 
     //@TableId

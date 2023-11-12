@@ -2,6 +2,8 @@ package com.zjz.rbacmybatisplus.entity;
 
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName("role_menu")
 public class RoleMenu  {
     //角色ID@TableId
-
+    @TableId
     private Long roleId;
     //菜单ID@TableId
 
