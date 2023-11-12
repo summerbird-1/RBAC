@@ -19,10 +19,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName("user_roles")
 public class UserRoles  {
 
-    @TableId
+    //@TableId
     private Long userid;
 
-    @TableId
+    //@TableId
     private Long roleid;
 
 

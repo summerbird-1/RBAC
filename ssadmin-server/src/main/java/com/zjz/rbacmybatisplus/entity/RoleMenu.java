@@ -19,11 +19,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @NoArgsConstructor
 @TableName("role_menu")
 public class RoleMenu  {
-    //角色ID
-    @TableId
+    //角色ID@TableId
+
     private Long roleId;
-    //菜单ID
-    @TableId
+    //菜单ID@TableId
+
     private Long menuId;
 
 

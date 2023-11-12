@@ -20,7 +20,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @NoArgsConstructor
 @TableName("menu")
 public class Menu  {
-    //菜单ID@TableId
+    //菜单ID
+    @TableId
     private Long id;
 
     //菜单名称
