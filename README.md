@@ -1,11 +1,22 @@
-# RBAC权限管理系统
+## SSAdmin
+本项目参考了以下开源项目：
+
+RuoYi-Vue 全新 Pro 版本： https://gitee.com/zhijiantianya/ruoyi-vue-pro
+eladmin-jpa 版本：https://gitee.com/elunez/eladmin
+对以上开源项目及贡献者表示感谢！
 
 #### 介绍
-vue2.0+springboot实现RBAC权限管理系统
+SSAdmin 是一个基于 Spring Boot、Mybatis、Spring Security、Mysql、Redis 和 Vue2 的前后端分离的通用后台管理系统。
 
-#### 软件架构
-软件架构说明
+项目以教学为主要目的，帮助开发者更好地学习和理解当前流行的开发技术和实践。
 
+#### 主要模块
+用户管理：
+角色管理：
+权限管理：
+菜单管理：
+字典管理：
+站点管理：
 
 #### 安装教程
 
