@@ -15,6 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author makejava
  * @since 2023-11-04 12:58:26
  */
+@SuppressWarnings("serial")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +23,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class UserRoles  {
 
     //@TableId
-    @TableId
     private Long userid;
 
     //@TableId

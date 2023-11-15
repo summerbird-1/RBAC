@@ -22,7 +22,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName("role_menu")
 public class RoleMenu  {
     //角色ID@TableId
-    @TableId
     private Long roleId;
     //菜单ID@TableId
 
