@@ -22,6 +22,8 @@ export default {
   mounted() {
     getInfo().then((res) => {
       this.username = res.data;
+    }).catch(() => {
+      this.$message.error("获取用户信息失败");
     });
   },
 };

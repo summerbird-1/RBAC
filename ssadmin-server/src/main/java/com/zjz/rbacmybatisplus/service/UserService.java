@@ -15,7 +15,6 @@ import com.zjz.rbacmybatisplus.entity.dto.UserIdStatus;
  */
 public interface UserService extends IService<User> {
 
-    ResponseResult login(LoginRequest user);
 
     ResponseResult selectUserPage(User user, Integer pageNum, Integer pageSize);
 
@@ -35,6 +34,9 @@ public interface UserService extends IService<User> {
 
     ResponseResult getUserInfo(Long id);
 
-    Long findIdByName(String username);
+   // Long findIdByName(String username);
+
+    String findNameById(long id);
+
 }
 

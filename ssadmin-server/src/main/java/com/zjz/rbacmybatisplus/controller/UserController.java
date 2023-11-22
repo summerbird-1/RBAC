@@ -4,25 +4,19 @@ package com.zjz.rbacmybatisplus.controller;
 
 
 import com.zjz.rbacmybatisplus.entity.ResponseResult;
-import com.zjz.rbacmybatisplus.entity.Role;
 import com.zjz.rbacmybatisplus.entity.User;
-import com.zjz.rbacmybatisplus.entity.dto.LoginRequest;
 import com.zjz.rbacmybatisplus.entity.dto.UserIdStatus;
-import com.zjz.rbacmybatisplus.entity.vo.UserInfoAndRoleIdsVo;
 import com.zjz.rbacmybatisplus.enums.AppHttpCodeEnum;
 import com.zjz.rbacmybatisplus.exception.SystemException;
-import com.zjz.rbacmybatisplus.mapper.UserMapper;
-import com.zjz.rbacmybatisplus.service.RoleService;
 import com.zjz.rbacmybatisplus.service.UserService;
 
-import com.zjz.rbacmybatisplus.utils.JwtTokenUtil;
+import com.zjz.rbacmybatisplus.utils.JwtUtil;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 
 /**
@@ -40,22 +34,15 @@ public class UserController{
     @Resource
     private UserService userService;
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-
-
-    @PostMapping("/login")
-    public ResponseResult login(@RequestBody LoginRequest user){
-
-        return userService.login(user);
-    }
+    private JwtUtil jwtUtil;
 
     @GetMapping("/getInfo")
-    public ResponseResult getInfo(@RequestHeader("Authorization") String authHeader){
+    public ResponseResult getInfo(@RequestHeader("Authorization") String authHeader) throws Exception {
         // 解析Authorization请求头中的JWT令牌 Bearer access_token
         String token = authHeader.substring(7);
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        //User foundUser = userService.findByname(username);
-        Long idByName = userService.findIdByName(username);
+        Claims claims = jwtUtil.parseJWT(token);
+        String userId = claims.getSubject();
+        String username = userService.findNameById(Long.parseLong(userId));
 
         return new ResponseResult(200,"查询成功",username);
 

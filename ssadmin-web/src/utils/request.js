@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { getAccessToken } from '@/utils/auth'
 
-// ... (其他代码，如axios的导入和实例的创建)
-
-
 const service = axios.create({
+  // baseURL: 'https://mock.apifox.cn/m1/2428381-0-default/admin-api',
   baseURL: '/api',
   timeout: 5000
 });
@@ -12,10 +10,10 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // 在请求发送之前对请求数据进行处理
-    // ...
     if (getAccessToken()) {
       config.headers['Authorization'] = 'Bearer ' + getAccessToken() // 携带token
     }
+
     return config;
   },
   error => {

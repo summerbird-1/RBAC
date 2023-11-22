@@ -7,7 +7,7 @@ export function login(username, password) {
     password
   }
   return request({
-    url: '/user/login',
+    url: '/login',
     method: 'post',
     data: data
   })
@@ -28,5 +28,23 @@ export function getAllUser() {
   return request({
     url: '/user/getAllUser',
     method: 'get'
+  })
+}
+
+
+// 刷新访问令牌
+export function refreshToken(Token) {
+  return service({
+    url: '/refreshToken/' + Token,
+    method: 'post'
+  })
+}
+
+// 退出方法
+export function logout() {
+
+  return request({
+    url: '/logout',
+    method: 'post'
   })
 }

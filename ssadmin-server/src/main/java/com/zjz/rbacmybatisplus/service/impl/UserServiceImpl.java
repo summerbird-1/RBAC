@@ -7,10 +7,8 @@ import com.zjz.rbacmybatisplus.entity.ResponseResult;
 import com.zjz.rbacmybatisplus.entity.Role;
 import com.zjz.rbacmybatisplus.entity.User;
 import com.zjz.rbacmybatisplus.entity.UserRoles;
-import com.zjz.rbacmybatisplus.entity.dto.LoginRequest;
 import com.zjz.rbacmybatisplus.entity.dto.UserIdStatus;
 import com.zjz.rbacmybatisplus.entity.vo.PageVo;
-import com.zjz.rbacmybatisplus.entity.vo.TokenResponse;
 import com.zjz.rbacmybatisplus.entity.vo.UserInfoAndRoleIdsVo;
 import com.zjz.rbacmybatisplus.entity.vo.UserVo;
 import com.zjz.rbacmybatisplus.mapper.UserMapper;
@@ -18,18 +16,14 @@ import com.zjz.rbacmybatisplus.service.RoleService;
 import com.zjz.rbacmybatisplus.service.UserRolesService;
 import com.zjz.rbacmybatisplus.service.UserService;
 import com.zjz.rbacmybatisplus.utils.BeanCopyUtils;
-import com.zjz.rbacmybatisplus.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.lang.invoke.LambdaMetafactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.apache.ibatis.ognl.OgnlRuntime.toArray;
 
 /**
  * 用户表(User)表服务实现类
@@ -40,8 +34,7 @@ import static org.apache.ibatis.ognl.OgnlRuntime.toArray;
 @Service("userService")
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+
     @Autowired
     private UserMapper userMapper;
 
@@ -50,26 +43,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private RoleService roleService;
-    @Override
-    public ResponseResult login(LoginRequest user) {
-        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(User::getUsername,user.getUsername());
-        List<User> users = list(queryWrapper);
-        if(users == null){
-            return new ResponseResult(400,"用户名或密码错误");
-        }
-        if(!user.getPassword().equals(users.get(0).getPassword())){
-            return new ResponseResult(400,"用户名或密码错误");
-        }
-        String username = user.getUsername();
-
-        // 生成访问令牌和刷新令牌
-        String accessToken = jwtTokenUtil.generateAccessToken(username);
-        String refreshToken = jwtTokenUtil.generateRefreshToken(username);
-        TokenResponse token_resp = new TokenResponse(accessToken,refreshToken);
-        return  new ResponseResult(200,"登录成功",token_resp);
-    }
-
     @Override
     public ResponseResult selectUserPage(User user, Integer pageNum, Integer pageSize) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
@@ -166,15 +139,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return ResponseResult.okResult(userInfoAndRoleIdsVo);
     }
 
-    /**
-     * 根据用户名查找用户id
-     * @param username
-     * @return
-     */
     @Override
-    public Long findIdByName(String username) {
-        return userMapper.findIdByName(username);
+    public String findNameById(long id) {
+
+            User user = userMapper.selectById(id);
+            return user.getUsername();
     }
+
 
 
     @Autowired

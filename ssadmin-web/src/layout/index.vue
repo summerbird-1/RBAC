@@ -32,13 +32,15 @@
   </template>
   
 <script>
-import { removeToken } from '@/utils/auth'
+import { removeToken} from '@/utils/auth'
+import {logout} from '@/api/login'
 
 export default {
   name: "MyComponent",
   methods: {
     logout() {
       this.$confirm('确定注销并退出系统吗？', '提示').then(() => {
+        logout()
         removeToken() // 清除token
         this.$router.push({ path: '/login' }) // 重定向到登录页面
       }).catch(() => {});

@@ -9,6 +9,16 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-circular-references: true
+  redis:
+    port: 6379
+    host: 127.0.0.1
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 10000ms
+        max-idle: 8
+        min-idle: 1
 mybatis-plus:
   configuration:
     # ??
@@ -20,9 +30,3 @@ mybatis-plus:
       logic-not-delete-value: 0
       id-type: auto
   mapper-locations: classpath*:/mapper/**/*.xml
-jwt:
-  secret: gx4SN/4gh6QPvLfVWCW8Aoo4l2n66d2338IwXyu1koDT1W94XS35OZJPYkA2IIMMgmlz96LCHSNc8jLYuzwB1IreKOZz2TZhsWODfjHAS9bYlduniCUSuSPZ5/OP15O63fn1kN1N5w64frpyWcWbTtiCgLMkJpnfjmqFMAr7fgcOGyt2rmunvFYni9T78Q4fn/0gpx3qm8zXw3oBbFb1Ge9Wnh1UCSapXd/EzLau3iaXqp9f+8FHmSCo9vbEaRSRMPHdcpnB4WKHKySE/BCNSsWM+kHmHyrAbvKErPCz2XXMnIalUoAtquq03LnmYjrBHyI230VcYEVzGmzLOTsSJw==
-  access_token:
-    expiration: 3600 # in seconds
-  refresh_token:
-    expiration: 604800 # in seconds
